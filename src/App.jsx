@@ -4,25 +4,26 @@ import SolarSystem from "./SolarSystem.jsx";
 
 /* ═══ THEME ═══════════════════════════════════════════════ */
 const T = {
-  bg: "#04070d", surf: "#0a1220", surf2: "#0e1828",
-  border: "#152233", border2: "#1a2d44",
-  cyan: "#00d4ff", cyanDim: "#005f77", green: "#00ff88",
-  amber: "#ffaa00", red: "#ff4d4d", purple: "#aa88ff",
-  txt: "#c8e4ff", muted: "#34587a", dimTxt: "#1a3050",
+  bg: "#fafbfd", surf: "#ffffff", surf2: "#f4f6fb",
+  border: "#eaedf4", border2: "#dfe3ec",
+  cyan: "#ff8c00", cyanDim: "#ffe4c4", green: "#34c759",
+  amber: "#ff9500", red: "#ff3b30", purple: "#af52de",
+  txt: "#1d1d1f", muted: "#86868b", dimTxt: "#424245",
 };
 
 const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inconsolata:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:#04070d;}
-  ::-webkit-scrollbar{width:4px;height:4px;}
+  body{background:#fafbfd; color:#1d1d1f; font-family:'Inter', sans-serif;}
+  ::-webkit-scrollbar{width:6px;height:6px;}
   ::-webkit-scrollbar-track{background:transparent;}
-  ::-webkit-scrollbar-thumb{background:#1a2d44;border-radius:4px;}
-  ::-webkit-scrollbar-thumb:hover{background:#264060;}
+  ::-webkit-scrollbar-thumb{background:#dfe3ec;border-radius:6px;}
+  ::-webkit-scrollbar-thumb:hover{background:#c0c6d4;}
   @keyframes spin{to{transform:rotate(360deg)}}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  @keyframes glow{0%,100%{box-shadow:0 0 10px #00d4ff22}50%{box-shadow:0 0 25px #00d4ff66}}
-  @keyframes breathe{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.02)}}
+  @keyframes glow{0%,100%{box-shadow:0 0 10px #ff8c0033}50%{box-shadow:0 0 25px #ff8c0077}}
+  @keyframes breathe{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.02)}}
   @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
   @keyframes wave{0%{height:5px}50%{height:28px}100%{height:5px}}
   @keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -30,11 +31,11 @@ const GLOBAL_CSS = `
   @keyframes cursorPing{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.5);opacity:0}}
   @keyframes dwellFill{from{stroke-dashoffset:88}to{stroke-dashoffset:0}}
   @keyframes sunPulse{0%,100%{opacity:.06}50%{opacity:.15}}
-  input,select,textarea{outline:none;}
-  input::placeholder,textarea::placeholder{color:#34587a;}
-  button{transition:all .2s ease;}
+  input,select,textarea{outline:none; font-family:'Inter', sans-serif; color:#1d1d1f; border: 1px solid #eaedf4; background: #ffffff;}
+  input::placeholder,textarea::placeholder{color:#86868b;}
+  button{transition:all .2s ease; cursor: pointer; font-family:'Inter', sans-serif;}
   button:disabled{opacity:.4;cursor:not-allowed!important;}
-  button:not(:disabled):hover{filter:brightness(1.15);}
+  button:not(:disabled):hover{filter:brightness(0.95);}
 `;
 
 const PLANETS = [
@@ -153,9 +154,9 @@ const Spinner = () => (
   </div>
 );
 const Tag = ({ label, color = T.cyan }) => (<span style={{ background: `${color}18`, border: `1px solid ${color}44`, borderRadius: 4, color, fontSize: 11, padding: "2px 8px", fontWeight: 700, letterSpacing: .5 }}>{label}</span>);
-const Card = ({ children, style = {} }) => (<div style={{ background: `${T.surf2}dd`, backdropFilter: "blur(8px)", border: `1px solid ${T.border}`, borderRadius: 14, padding: "16px 20px", transition: "border-color .2s", ...style }}>{children}</div>);
+const Card = ({ children, style = {} }) => (<div style={{ background: `rgba(255,255,255,0.7)`, backdropFilter: "blur(12px)", border: `1px solid ${T.border}`, borderRadius: 14, padding: "16px 20px", transition: "border-color .2s", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", ...style }}>{children}</div>);
 const CardTitle = ({ children }) => (<div style={{ color: T.cyan, fontWeight: 700, fontSize: 13, marginBottom: 14, letterSpacing: 1, textTransform: "uppercase", display: "flex", alignItems: "center", gap: 8 }}>{children}</div>);
-const PrimaryBtn = ({ children, onClick, disabled, style = {} }) => (<button onClick={onClick} disabled={disabled} style={{ background: `linear-gradient(135deg,${T.cyanDim},#001e2e)`, border: `1px solid ${T.cyan}88`, borderRadius: 10, color: T.cyan, padding: "11px 20px", fontSize: 14, cursor: "pointer", fontWeight: 700, fontFamily: "Rajdhani,sans-serif", letterSpacing: .5, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "all .2s ease", boxShadow: `0 0 12px ${T.cyan}15`, ...style }} onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 0 22px ${T.cyan}40`; e.currentTarget.style.borderColor = T.cyan; }} onMouseLeave={e => { e.currentTarget.style.boxShadow = `0 0 12px ${T.cyan}15`; e.currentTarget.style.borderColor = `${T.cyan}88`; }}>{children}</button>);
+const PrimaryBtn = ({ children, onClick, disabled, style = {} }) => (<button onClick={onClick} disabled={disabled} style={{ background: `linear-gradient(135deg, ${T.cyan}, #ff6b00)`, border: `1px solid ${T.cyan}88`, borderRadius: 10, color: "#ffffff", padding: "11px 20px", fontSize: 14, cursor: "pointer", fontWeight: 600, fontFamily: "Inter,sans-serif", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "all .2s ease", boxShadow: `0 4px 14px ${T.cyan}40`, ...style }} onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 6px 20px ${T.cyan}60`; e.currentTarget.style.transform = "translateY(-1px)"; }} onMouseLeave={e => { e.currentTarget.style.boxShadow = `0 4px 14px ${T.cyan}40`; e.currentTarget.style.transform = "translateY(0)"; }}>{children}</button>);
 const Input = ({ value, onChange, placeholder, onKeyDown, style = {} }) => (<input value={value} onChange={onChange} placeholder={placeholder} onKeyDown={onKeyDown} style={{ background: T.surf2, border: `1px solid ${T.border2}`, borderRadius: 10, color: T.txt, padding: "10px 14px", fontSize: 14, width: "100%", fontFamily: "Rajdhani,sans-serif", transition: "border-color .2s, box-shadow .2s", ...style }} onFocus={e => { e.target.style.borderColor = `${T.cyan}88`; e.target.style.boxShadow = `0 0 10px ${T.cyan}18`; }} onBlur={e => { e.target.style.borderColor = T.border2; e.target.style.boxShadow = "none"; }} />);
 
 /* ═══════════════════════════════════════════════════════════
@@ -833,18 +834,16 @@ const GESTURE_ACTIONS = {
   swipe_right: "→ Next Tab", swipe_left: "→ Prev Tab",
 };
 
-function VirtualCursor({ x, y, visible, pinching, dwelling, dwellPct }) {
+function VirtualCursor({ x, y, visible, pinching }) {
   if (!visible) return null;
   return (
     <div style={{ position: "fixed", left: x - 22, top: y - 22, width: 44, height: 44, pointerEvents: "none", zIndex: 9999 }}>
       <svg width="44" height="44">
-        <circle cx="22" cy="22" r="14" fill="none" stroke={pinching ? "#00ff88" : "#00d4ff"} strokeWidth="2.5" opacity=".9" />
+        {/* Outer ring */}
+        <circle cx="22" cy="22" r="14" fill="none" stroke={pinching ? "#00ff88" : "#00d4ff"} strokeWidth="2.5" opacity=".9"
+          style={{ transform: pinching ? "scale(0.8)" : "scale(1)", transformOrigin: "center", transition: "transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)" }} />
+        {/* Inner dot */}
         <circle cx="22" cy="22" r="5" fill={pinching ? "#00ff88" : "#00d4ff"} opacity=".8" />
-        {dwelling && dwellPct > 0 && (
-          <circle cx="22" cy="22" r="18" fill="none" stroke="#ffaa00" strokeWidth="3"
-            strokeDasharray={`${dwellPct * 113} 113`} strokeLinecap="round"
-            transform="rotate(-90 22 22)" opacity=".9" />
-        )}
       </svg>
     </div>
   );
@@ -857,14 +856,13 @@ function HandGesturePanel({ onTabChange, currentTab, tabIds, enabled, onToggle, 
   const animRef = useRef(null);
   const prevWristRef = useRef(null);
   const swipeTimerRef = useRef(null);
-  const dwellRef = useRef({ el: null, start: 0, x: 0, y: 0 });
+  const pinchCooldownRef = useRef(null);
   const gestureBufferRef = useRef({ gesture: "none", count: 0 });
   const actionCooldownRef = useRef(null);
-  const velocityRef = useRef({ x: 0, y: 0 });
 
   const [status, setStatus] = useState("idle"); // idle|loading|ready|error
   const [gesture, setGesture] = useState("none");
-  const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false, pinching: false, dwelling: false, dwellPct: 0 });
+  const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false, pinching: false });
   const [minimized, setMinimized] = useState(false);
   const [gestureLog, setGestureLog] = useState([]);
   const [showGuide, setShowGuide] = useState(false);
@@ -873,72 +871,80 @@ function HandGesturePanel({ onTabChange, currentTab, tabIds, enabled, onToggle, 
     setGestureLog(p => [{ g, action, t: new Date().toLocaleTimeString() }, ...p.slice(0, 6)]);
   };
 
-  const getFingersUp = (lm) => {
-    const tips = [8, 12, 16, 20], pips = [6, 10, 14, 18];
-    return tips.map((tip, i) => lm[tip][1] < lm[pips[i]][1]);
-  };
-  const isThumbUp = (lm) => lm[4][1] < lm[3][1];
-  const isPinching = (lm) => {
-    const dx = lm[4][0] - lm[8][0], dy = lm[4][1] - lm[8][1];
-    return Math.sqrt(dx * dx + dy * dy) < 40;
-  };
   const classifyGesture = (lm) => {
-    const fingers = getFingersUp(lm);
-    const thumb = isThumbUp(lm);
-    const pinch = isPinching(lm);
-    if (pinch) return "pinch";
-    const count = fingers.filter(Boolean).length + (thumb ? 1 : 0);
-    if (count === 0) return "fist";
-    if (count >= 5) return "open";
-    if (fingers[0] && !fingers[1] && !fingers[2] && !fingers[3]) return "point";
-    if (fingers[0] && fingers[1] && !fingers[2] && !fingers[3]) return "peace";
-    if (fingers[0] && fingers[1] && fingers[2] && !fingers[3]) return "three";
+    // 0:Wrist, [1,2,3,4]:Thumb, [5,6,7,8]:Index, [9,10,11,12]:Middle, [13,14,15,16]:Ring, [17,18,19,20]:Pinky
+    const isUp = (tip, pip) => lm[tip][1] < lm[pip][1] - 15; // strict vertical gap
+
+    const thumbUp = lm[4][1] < lm[3][1];
+    const indexUp = isUp(8, 6);
+    const middleUp = isUp(12, 10);
+    const ringUp = isUp(16, 14);
+    const pinkyUp = isUp(20, 18);
+
+    // Strict pinch detection: thumb tip to index tip distance
+    const dx = lm[4][0] - lm[8][0], dy = lm[4][1] - lm[8][1];
+    if (Math.sqrt(dx * dx + dy * dy) < 35 && !middleUp && !ringUp && !pinkyUp) return "pinch";
+
+    if (!thumbUp && !indexUp && !middleUp && !ringUp && !pinkyUp) return "fist";
+    if (indexUp && middleUp && ringUp && pinkyUp) return "open";
+    if (indexUp && !middleUp && !ringUp && !pinkyUp) return "point";
+    if (indexUp && middleUp && !ringUp && !pinkyUp) return "peace";
+    if (indexUp && middleUp && ringUp && !pinkyUp) return "three";
+
     return "none";
   };
 
   const processLandmarks = useCallback((lm, videoW, videoH) => {
     const rawG = classifyGesture(lm);
-    // Gesture stability: require 4 consecutive same frames to avoid flicker
+    // Gesture stability: require 5 consecutive same frames to avoid flicker
     if (rawG === gestureBufferRef.current.gesture) {
-      gestureBufferRef.current.count = Math.min(gestureBufferRef.current.count + 1, 6);
+      gestureBufferRef.current.count = Math.min(gestureBufferRef.current.count + 1, 8);
     } else {
       gestureBufferRef.current = { gesture: rawG, count: 1 };
     }
-    const g = gestureBufferRef.current.count >= 4 ? rawG : gesture;
-    setGesture(g);
+    // Only accept gesture if seen for 5 frames straight
+    const g = gestureBufferRef.current.count >= 5 ? rawG : gesture;
 
-    // Cursor from index fingertip (mirrored) with velocity-adaptive smoothing
+    // Only update state if something changed
+    if (g !== gesture) {
+      setGesture(g);
+    }
+
+    // Cursor from index fingertip (mirrored) with heavy low-pass filter
     const rawX = (1 - lm[8][0] / videoW) * window.innerWidth;
     const rawY = (lm[8][1] / videoH) * window.innerHeight;
     const pinching = g === "pinch";
+
     setCursor(p => {
-      // Velocity-adaptive lerp: fast motion = snappy (0.55), slow = ultra-smooth (0.15)
+      // Much stronger smoothing: always lerp heavily towards raw position
+      // Fast motion gets 0.3 (smoother than before), slow motion gets 0.08 (ultra stable)
       const vx = Math.abs(rawX - p.x);
       const vy = Math.abs(rawY - p.y);
       const speed = Math.sqrt(vx * vx + vy * vy);
-      const lerpF = Math.min(0.55, Math.max(0.15, speed / 300));
+
+      const lerpF = Math.min(0.3, Math.max(0.08, speed / 400));
+
       const tipX = p.visible ? p.x + (rawX - p.x) * lerpF : rawX;
       const tipY = p.visible ? p.y + (rawY - p.y) * lerpF : rawY;
-      // Track velocity for other uses
-      velocityRef.current = { x: rawX - p.x, y: rawY - p.y };
 
-      // ── UNIVERSAL DWELL CLICK ──
-      const el = document.elementFromPoint(tipX, tipY);
-      if (el && el.closest("button,a")) {
-        if (!p.dwelling || Math.abs(p.x - tipX) > 30 || Math.abs(p.y - tipY) > 30) {
-          dwellRef.current = { el, start: Date.now(), x: tipX, y: tipY };
+      // ── PINCH TO CLICK ──
+      // If we just entered the pinch gesture, trigger a click!
+      if (pinching && !p.pinching && !pinchCooldownRef.current) {
+        const el = document.elementFromPoint(tipX, tipY);
+        if (el && el.closest("button,a,[role='button']")) {
+          const target = el.closest("button,a,[role='button']");
+          target.click();
+          logGesture("🤏", "Pinch Click");
         } else {
-          const pct = Math.min(1, (Date.now() - dwellRef.current.start) / 900);
-          if (pct >= 1 && dwellRef.current.el) {
-            dwellRef.current.el.click();
-            dwellRef.current.el = null;
-            logGesture("☝️", "Dwell Click");
-          }
-          return { ...p, x: tipX, y: tipY, visible: true, pinching, dwelling: true, dwellPct: pct };
+          // General click if not on a specific element
+          logGesture("🤏", "Pinch (No target)");
         }
-      } else { dwellRef.current = { el: null, start: 0, x: tipX, y: tipY }; }
 
-      return { x: tipX, y: tipY, visible: true, pinching, dwelling: false, dwellPct: 0 };
+        // Prevent spam clicking while holding pinch
+        pinchCooldownRef.current = setTimeout(() => { pinchCooldownRef.current = null; }, 500);
+      }
+
+      return { x: tipX, y: tipY, visible: true, pinching };
     });
 
     // ── SWIPE GESTURE FOR TABS ──
@@ -1282,74 +1288,171 @@ function DiagramPanel() {
 /* ═══════════════════════════════════════════════════════════
    OTHER PANELS (condensed)
 ═══════════════════════════════════════════════════════════ */
-function AssistantPanel() {
-  const [msgs, setMsgs] = useState([{ role: "assistant", content: "👋 Welcome to NOVA AI!\n\nAsk me to explain any topic, generate examples, or create quiz questions.\n\n💡 Try: \"Explain Newton's Third Law for Grade 8\"" }]);
-  const [input, setInput] = useState(""); const [loading, setLoading] = useState(false); const bottomRef = useRef(null);
-  const SUGS = ["Explain Newton's Third Law for Grade 8", "How does photosynthesis work?", "Explain the water cycle", "What is the Pythagorean theorem?", "Describe the human digestive system"];
-  useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }) }, [msgs]);
-  const send = async (text) => {
-    const msg = text || input.trim(); if (!msg || loading) return;
-    setInput(""); setMsgs(p => [...p, { role: "user", content: msg }]); setLoading(true);
-    try { const r = await callAI(msg, "You are an enthusiastic AI teaching assistant. Structure your response: 📖 EXPLANATION, 💡 EXAMPLES (2-3), 🔑 KEY POINTS (3-4 bullets), ❓ QUIZ QUESTIONS (2). Keep it engaging and educational."); setMsgs(p => [...p, { role: "assistant", content: r }]); } catch (e) { setMsgs(p => [...p, { role: "assistant", content: `⚠️ ${e.message}` }]); }
+function AIAssistantPanel() {
+  const [q, setQ] = useState(""); const [msg, setMsg] = useState([{ r: "ai", c: "Hello! I am your AI Teaching Assistant. How can I help you today?" }]);
+  const [loading, setLoading] = useState(false); const endRef = useRef(null);
+  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [msg]);
+  const ask = async () => {
+    if (!q.trim() || loading) return; setMsg(p => [...p, { r: "u", c: q }]);
+    const currentQ = q; setQ(""); setLoading(true);
+    try {
+      const resp = await callAI(`The student asks: "${currentQ}". Keep it concise, educational, and engaging. Use emojis appropriately. If they ask about Newton, Photosynthesis, Water Cycle, Pythagorean theorem, Digestive system, Solar System, Algebra, Cells, Gravity, Electricity, DNA, Climate, Fractions, Atoms, or Shakespeare, provide a solid explanation.`);
+      setMsg(p => [...p, { r: "ai", c: resp }]);
+    } catch { setMsg(p => [...p, { r: "ai", c: "Sorry, I'm offline! Check the solar system model instead." }]); }
     setLoading(false);
   };
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-      <div style={{ padding: "10px 18px", borderBottom: `1px solid ${T.border}`, display: "flex", gap: 8, flexWrap: "wrap", background: T.surf }}>
-        {SUGS.map(s => <button key={s} onClick={() => send(s)} style={{ background: T.surf2, border: `1px solid ${T.border2}`, borderRadius: 20, color: T.muted, padding: "5px 12px", fontSize: 12, cursor: "pointer", fontFamily: "Rajdhani,sans-serif", fontWeight: 500, transition: "all .15s", whiteSpace: "nowrap" }} onMouseEnter={e => { e.target.style.borderColor = T.cyan; e.target.style.color = T.cyan; }} onMouseLeave={e => { e.target.style.borderColor = T.border2; e.target.style.color = T.muted; }}>{s}</button>)}
-      </div>
-      <div style={{ flex: 1, overflowY: "auto", padding: 20, display: "flex", flexDirection: "column", gap: 16 }}>
-        {msgs.map((m, i) => (
-          <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", animation: "fadeSlide .3s ease" }}>
-            {m.role === "assistant" && <div style={{ width: 34, height: 34, borderRadius: "50%", background: `linear-gradient(135deg,${T.cyanDim},#003355)`, display: "flex", alignItems: "center", justifyContent: "center", marginRight: 10, flexShrink: 0, fontSize: 16, border: `1px solid ${T.border2}` }}>🤖</div>}
-            <div style={{ maxWidth: "82%", padding: "12px 16px", borderRadius: m.role === "user" ? "18px 18px 4px 18px" : "4px 18px 18px 18px", background: m.role === "user" ? `linear-gradient(135deg,${T.cyanDim},#003355)` : T.surf2, border: `1px solid ${m.role === "user" ? T.cyanDim : T.border}`, color: T.txt, fontSize: 14, lineHeight: 1.75, whiteSpace: "pre-wrap", fontFamily: "Rajdhani,sans-serif", fontWeight: 500 }}>{m.content}</div>
-            {m.role === "user" && <div style={{ width: 34, height: 34, borderRadius: "50%", background: `linear-gradient(135deg,#005520,#002210)`, display: "flex", alignItems: "center", justifyContent: "center", marginLeft: 10, flexShrink: 0, fontSize: 16, border: `1px solid ${T.border2}` }}>👩‍🏫</div>}
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 24, paddingBottom: 0 }}>
+      <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: 16, paddingRight: 10, paddingBottom: 20 }}>
+        {msg.map((m, i) => (
+          <div key={i} style={{ display: "flex", justifyContent: m.r === "u" ? "flex-end" : "flex-start", animation: "fadeSlide 0.3s ease-out" }}>
+            <div style={{ maxWidth: "75%", background: m.r === "u" ? `linear-gradient(135deg, ${T.cyan}, #ff6b00)` : T.surf, border: m.r === "u" ? "none" : `1px solid ${T.border}`, borderRadius: m.r === "u" ? "20px 20px 4px 20px" : "20px 20px 20px 4px", padding: "14px 18px", color: m.r === "u" ? "#fff" : T.txt, fontSize: 15, lineHeight: 1.5, boxShadow: "0 4px 14px rgba(0,0,0,0.03)" }}>
+              {m.r === "ai" && <div style={{ fontSize: 12, fontWeight: 600, color: T.cyan, marginBottom: 4, letterSpacing: 0.5 }}>NOVA AI</div>}
+              {m.c.split('\n').map((l, j) => <div key={j} style={{ marginBottom: l ? 6 : 0 }}>{l}</div>)}
+            </div>
           </div>
         ))}
-        {loading && <div style={{ display: "flex", alignItems: "center", gap: 10 }}><div style={{ width: 34, height: 34, borderRadius: "50%", background: `linear-gradient(135deg,${T.cyanDim},#003355)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, border: `1px solid ${T.border2}` }}>🤖</div><div style={{ padding: "14px 18px", borderRadius: "4px 18px 18px 18px", background: T.surf2, border: `1px solid ${T.border}`, display: "flex", gap: 6, alignItems: "center" }}>{[0, 1, 2].map(i => <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: T.cyan, animation: `bounce .9s ease-in-out ${i * .18}s infinite` }} />)}</div></div>}
-        <div ref={bottomRef} />
+        {loading && <Spinner />}
+        <div ref={endRef} />
       </div>
-      <div style={{ padding: "14px 18px", borderTop: `1px solid ${T.border}`, display: "flex", gap: 10, background: T.surf }}>
-        <textarea value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } }} placeholder="Ask anything… (Enter to send)" rows={2} style={{ flex: 1, background: T.surf2, border: `1px solid ${T.border2}`, borderRadius: 12, color: T.txt, padding: "10px 14px", fontSize: 14, resize: "none", fontFamily: "Rajdhani,sans-serif", fontWeight: 500, lineHeight: 1.5 }} />
-        <PrimaryBtn onClick={() => send()} disabled={loading || !input.trim()} style={{ width: 50, height: 50, alignSelf: "flex-end", borderRadius: 12, padding: 0, fontSize: 20 }}>➤</PrimaryBtn>
+      <div style={{ padding: "16px 0", display: "flex", gap: 10 }}>
+        <Input value={q} onChange={e => setQ(e.target.value)} onKeyDown={e => e.key === "Enter" && ask()} placeholder="Ask me anything..." style={{ height: 50, borderRadius: 25, paddingLeft: 20 }} />
+        <PrimaryBtn onClick={ask} disabled={loading} style={{ width: 50, height: 50, borderRadius: 25, padding: 0 }}><span style={{ fontSize: 20 }}>↑</span></PrimaryBtn>
       </div>
     </div>
   );
 }
 
+const DEMO_LESSONS = [
+  {
+    title: "Introduction to the Solar System",
+    subject: "Astronomy",
+    grade: "7th",
+    duration: "45 mins",
+    icon: "🪐",
+    objectives: [
+      "Identify the 8 major planets in our solar system",
+      "Understand the difference between terrestrial planets and gas giants",
+      "Explain the concept of an orbit and gravitational pull"
+    ],
+    activities: [
+      { name: "3D Flythrough", time: "15 min", desc: "Use the interactive board to zoom into terrestrial planets. Compare sizes and atmospheres." },
+      { name: "Gravity Simulation", time: "10 min", desc: "Demonstrate orbit paths using the whiteboard smart draw tools." },
+      { name: "Quiz Challenge", time: "20 min", desc: "Interactive class quiz identifying planets by their defining features." }
+    ]
+  },
+  {
+    title: "Newton's Laws of Motion",
+    subject: "Physics",
+    grade: "8th",
+    duration: "50 mins",
+    icon: "🍎",
+    objectives: [
+      "Define Inertia, Acceleration, and Action/Reaction",
+      "Calculate Force (F = ma) using real-world examples",
+      "Apply laws to space travel scenarios"
+    ],
+    activities: [
+      { name: "Rocket Launch Demo", time: "20 min", desc: "Use AI Diagram generator to draw a rocket and map the thrust vs gravity vectors." },
+      { name: "Group Problem Solving", time: "15 min", desc: "Calculate the acceleration needed to escape Earth's gravity on the whiteboard." },
+      { name: "Interactive Video", time: "15 min", desc: "Watch Apollo 11 launch footage and annotate the stages of motion." }
+    ]
+  },
+  {
+    title: "The Water Cycle & Weather",
+    subject: "Earth Science",
+    grade: "6th",
+    duration: "40 mins",
+    icon: "🌧️",
+    objectives: [
+      "Map the stages of the water cycle: Evaporation, Condensation, Precipitation",
+      "Understand how solar energy drives weather patterns",
+      "Identify different cloud types"
+    ],
+    activities: [
+      { name: "Cycle Diagramming", time: "15 min", desc: "Students take turns drawing the water cycle on the smartboard using gestures." },
+      { name: "Live Weather Feed", time: "10 min", desc: "Pull up global weather map and identify active precipitation zones." },
+      { name: "Cloud Identification", time: "15 min", desc: "AI flashes images of clouds, class votes on Cumulus vs Stratus vs Cirrus." }
+    ]
+  }
+];
+
 function LessonPanel() {
-  const [topic, setTopic] = useState(""); const [grade, setGrade] = useState("7"); const [duration, setDuration] = useState("40");
-  const [plan, setPlan] = useState(null); const [loading, setLoading] = useState(false); const [err, setErr] = useState("");
-  const generate = async () => {
-    if (!topic.trim() || loading) return; setLoading(true); setErr(""); setPlan(null);
-    try {
-      const raw = await callAI(`Generate a lesson plan:\nTopic:${topic}\nGrade:${grade}\nDuration:${duration}min\nReturn ONLY valid JSON (no backticks):\n{"title":"...","objectives":["..."],"introduction":"...","teaching_points":[{"point":"...","explanation":"...","activity":"..."}],"activities":[{"name":"...","duration":"...","description":"..."}],"quiz":[{"q":"...","options":["A","B","C","D"],"answer":0}],"summary":"...","homework":"..."}`);
-      setPlan(JSON.parse(raw.replace(/```json|```/g, "").trim()));
-    } catch (e) { setErr("Error: " + e.message); } setLoading(false);
-  };
-  const sel = { background: T.surf2, border: `1px solid ${T.border2}`, borderRadius: 10, color: T.txt, padding: "10px 14px", fontSize: 14, width: "100%", fontFamily: "Rajdhani,sans-serif" };
+  const [selectedTopic, setSelectedTopic] = useState(null);
+
   return (
-    <div style={{ padding: 24, height: "100%", overflowY: "auto" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}><span style={{ fontSize: 32 }}>📋</span><div><div style={{ color: T.txt, fontSize: 20, fontWeight: 700 }}>Lesson Plan Generator</div><div style={{ color: T.muted, fontSize: 12 }}>AI-generated comprehensive lesson plans</div></div></div>
-      <Card style={{ marginBottom: 18 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 14, marginBottom: 14 }}>
-          <div><label style={{ color: T.muted, fontSize: 11, display: "block", marginBottom: 5, letterSpacing: 1, fontWeight: 700 }}>TOPIC *</label><Input value={topic} onChange={e => setTopic(e.target.value)} placeholder="e.g. Photosynthesis…" onKeyDown={e => e.key === "Enter" && generate()} /></div>
-          <div><label style={{ color: T.muted, fontSize: 11, display: "block", marginBottom: 5, letterSpacing: 1, fontWeight: 700 }}>GRADE</label><select value={grade} onChange={e => setGrade(e.target.value)} style={sel}>{[...Array(12)].map((_, i) => <option key={i + 1} value={i + 1}>Grade {i + 1}</option>)}</select></div>
-          <div><label style={{ color: T.muted, fontSize: 11, display: "block", marginBottom: 5, letterSpacing: 1, fontWeight: 700 }}>DURATION</label><select value={duration} onChange={e => setDuration(e.target.value)} style={sel}>{[30, 40, 45, 50, 60, 90].map(d => <option key={d} value={d}>{d} min</option>)}</select></div>
+    <div style={{ padding: 24, height: "100%", overflowY: "auto", display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+        <div style={{ width: 42, height: 42, borderRadius: 12, background: `linear-gradient(135deg, ${T.cyan}, #ff6b00)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, boxShadow: `0 4px 12px ${T.cyan}44` }}>📋</div>
+        <div>
+          <div style={{ color: T.txt, fontSize: 22, fontWeight: 800, letterSpacing: 0.5 }}>Lesson Planner</div>
+          <div style={{ color: T.muted, fontSize: 13, fontWeight: 500 }}>Prepared Demo Curriculum</div>
         </div>
-        <PrimaryBtn onClick={generate} disabled={loading || !topic.trim()} style={{ width: "100%" }}>{loading ? "⏳ Generating…" : "✨ Generate Lesson Plan"}</PrimaryBtn>
-      </Card>
-      {loading && <Spinner />}{err && <div style={{ color: "#ff8888", padding: 14, background: "#1a0808", border: `1px solid #ff444433`, borderRadius: 10 }}>{err}</div>}
-      {plan && !loading && (<div style={{ display: "flex", flexDirection: "column", gap: 14, animation: "fadeSlide .4s ease" }}>
-        <Card><div style={{ color: T.cyan, fontSize: 18, fontWeight: 800, marginBottom: 10 }}>{plan.title}</div><CardTitle>🎯 Objectives</CardTitle><ul style={{ paddingLeft: 18, display: "flex", flexDirection: "column", gap: 5 }}>{plan.objectives?.map((o, i) => <li key={i} style={{ color: T.txt, lineHeight: 1.6, fontSize: 14 }}>{o}</li>)}</ul></Card>
-        <Card><CardTitle>🚀 Introduction</CardTitle><p style={{ color: T.txt, lineHeight: 1.75, fontSize: 14 }}>{plan.introduction}</p></Card>
-        <Card><CardTitle>📚 Teaching Points</CardTitle>{plan.teaching_points?.map((tp, i) => <div key={i} style={{ marginBottom: i < plan.teaching_points.length - 1 ? 16 : 0, paddingBottom: i < plan.teaching_points.length - 1 ? 16 : 0, borderBottom: i < plan.teaching_points.length - 1 ? `1px solid ${T.border}` : "none" }}><div style={{ color: T.cyan, fontWeight: 700, fontSize: 14, marginBottom: 5 }}>📌 {tp.point}</div><div style={{ color: T.txt, fontSize: 13, lineHeight: 1.65, marginBottom: 5 }}>{tp.explanation}</div><div style={{ color: T.green, fontSize: 12 }}>💡 {tp.activity}</div></div>)}</Card>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-          <Card><CardTitle>🎮 Activities</CardTitle>{plan.activities?.map((a, i) => <div key={i} style={{ background: T.bg, border: `1px solid ${T.border}`, borderRadius: 10, padding: "10px 12px", marginBottom: 7 }}><div style={{ color: T.amber, fontWeight: 700, fontSize: 13 }}>{a.name}</div><div style={{ color: T.cyan, fontSize: 11, margin: "3px 0" }}>⏱ {a.duration}</div><div style={{ color: T.muted, fontSize: 12, lineHeight: 1.5 }}>{a.description}</div></div>)}</Card>
-          <Card><CardTitle>❓ Quick Quiz</CardTitle>{plan.quiz?.map((q, i) => <div key={i} style={{ background: T.bg, border: `1px solid ${T.border}`, borderRadius: 10, padding: "10px 12px", marginBottom: 7 }}><div style={{ color: T.txt, fontSize: 12, fontWeight: 600, marginBottom: 7 }}>Q{i + 1}: {q.q}</div>{q.options?.map((opt, oi) => <div key={oi} style={{ fontSize: 11, color: oi === q.answer ? T.green : T.muted, fontWeight: oi === q.answer ? 700 : 400 }}>{oi === q.answer ? "✅" : "○"} {String.fromCharCode(65 + oi)}) {opt}</div>)}</div>)}</Card>
+      </div>
+
+      {!selectedTopic ? (
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {DEMO_LESSONS.map((lesson, idx) => (
+            <div key={idx} onClick={() => setSelectedTopic(lesson)} style={{ background: T.surf2, border: `1px solid ${T.border}`, borderRadius: 14, padding: 20, cursor: "pointer", transition: "all .2s ease", display: "flex", alignItems: "center", gap: 16 }} onMouseEnter={e => { e.currentTarget.style.borderColor = T.cyan; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 8px 24px rgba(0,0,0,0.04)`; }} onMouseLeave={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
+              <div style={{ fontSize: 32, background: "rgba(255,255,255,0.8)", width: 56, height: 56, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>{lesson.icon}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ color: T.txt, fontSize: 16, fontWeight: 700, marginBottom: 4 }}>{lesson.title}</div>
+                <div style={{ display: "flex", gap: 12, color: T.muted, fontSize: 12, fontWeight: 600 }}>
+                  <span>📚 {lesson.subject}</span>
+                  <span>🎓 {lesson.grade} Grade</span>
+                  <span>⏱️ {lesson.duration}</span>
+                </div>
+              </div>
+              <div style={{ color: T.cyan, fontSize: 20 }}>→</div>
+            </div>
+          ))}
+          <div style={{ marginTop: 12, padding: "16px", background: `${T.cyan}0a`, border: `1px dashed ${T.cyan}66`, borderRadius: 14, textAlign: "center", color: T.cyan, fontSize: 13, fontWeight: 600, cursor: "pointer" }}>
+            + Generate New AI Lesson Plan
+          </div>
         </div>
-        <Card><CardTitle>📝 Summary</CardTitle><p style={{ color: T.txt, lineHeight: 1.75, fontSize: 14, marginBottom: 10 }}>{plan.summary}</p><div style={{ background: T.bg, borderRadius: 10, padding: "10px 14px", border: `1px solid ${T.border}` }}><span style={{ color: T.green, fontWeight: 700 }}>📚 Homework: </span><span style={{ color: T.txt, fontSize: 13 }}>{plan.homework}</span></div></Card>
-      </div>)}
+      ) : (
+        <div style={{ animation: "fadeSlide .3s ease", display: "flex", flexDirection: "column", gap: 16 }}>
+          <button onClick={() => setSelectedTopic(null)} style={{ background: "transparent", border: "none", color: T.muted, fontSize: 14, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, padding: "0 0 8px 0", alignSelf: "flex-start" }}>
+            ← Back to Lessons
+          </button>
+
+          <div style={{ background: `linear-gradient(135deg, ${T.surf2}, #ffffff)`, border: `1px solid ${T.border}`, borderRadius: 16, padding: 24, boxShadow: "0 8px 24px rgba(0,0,0,0.02)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+              <span style={{ fontSize: 36 }}>{selectedTopic.icon}</span>
+              <div>
+                <div style={{ color: T.txt, fontSize: 20, fontWeight: 800 }}>{selectedTopic.title}</div>
+                <div style={{ color: T.cyan, fontSize: 13, fontWeight: 700, letterSpacing: 0.5 }}>{selectedTopic.subject.toUpperCase()} • {selectedTopic.grade} GRADE</div>
+              </div>
+            </div>
+
+            <div style={{ background: T.surf2, borderRadius: 12, padding: 16, border: `1px solid ${T.border}`, marginBottom: 20 }}>
+              <div style={{ color: T.txt, fontSize: 13, fontWeight: 800, marginBottom: 10, letterSpacing: 0.5 }}>🎯 LEARNING OBJECTIVES</div>
+              <ul style={{ margin: 0, paddingLeft: 20, color: T.dimTxt, fontSize: 13, lineHeight: 1.6, display: "flex", flexDirection: "column", gap: 6 }}>
+                {selectedTopic.objectives.map((obj, i) => <li key={i}>{obj}</li>)}
+              </ul>
+            </div>
+
+            <div>
+              <div style={{ color: T.txt, fontSize: 13, fontWeight: 800, marginBottom: 12, letterSpacing: 0.5 }}>🚀 CLASS ACTIVITIES</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {selectedTopic.activities.map((act, i) => (
+                  <div key={i} style={{ background: T.bg, border: `1px solid ${T.border2}`, borderRadius: 12, padding: 16, borderLeft: `4px solid ${T.cyan}` }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                      <span style={{ color: T.txt, fontWeight: 700, fontSize: 14 }}>{act.name}</span>
+                      <span style={{ color: T.cyan, fontSize: 12, fontWeight: 700, background: `${T.cyan}11`, padding: "2px 8px", borderRadius: 10 }}>{act.time}</span>
+                    </div>
+                    <div style={{ color: T.muted, fontSize: 13, lineHeight: 1.5 }}>{act.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button style={{ width: "100%", background: `linear-gradient(135deg, ${T.cyan}, #ff6b00)`, border: "none", borderRadius: 12, color: "#fff", padding: "14px", fontSize: 14, fontWeight: 700, marginTop: 24, cursor: "pointer", boxShadow: `0 4px 14px ${T.cyan}44` }}>
+              Launch Full Lesson on Smartboard
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -1458,6 +1561,18 @@ function SolarPanel() {
     const onDrag = e => { if (!dragRef.current.dragging) return; targetRef.current.rotY += (e.clientX - dragRef.current.prevX) * .005; targetRef.current.rotX = Math.max(-.7, Math.min(.7, targetRef.current.rotX + (e.clientY - dragRef.current.prevY) * .003)); dragRef.current.prevX = e.clientX; dragRef.current.prevY = e.clientY; };
     const onWheel = e => { targetRef.current.zoom = Math.max(8, Math.min(80, targetRef.current.zoom + e.deltaY * .04)); };
     renderer.domElement.addEventListener("click", onClick); renderer.domElement.addEventListener("mousemove", onMove); renderer.domElement.addEventListener("mousedown", onDown); window.addEventListener("mouseup", onUp); window.addEventListener("mousemove", onDrag); renderer.domElement.addEventListener("wheel", onWheel, { passive: true });
+
+    const ro = new ResizeObserver(() => {
+      if (!container) return;
+      const nw = container.clientWidth, nh = container.clientHeight;
+      if (nw && nh && camera && renderer) {
+        camera.aspect = nw / nh;
+        camera.updateProjectionMatrix();
+        renderer.setSize(nw, nh);
+      }
+    });
+    ro.observe(container);
+
     let frameCount = 0;
     const animate = () => {
       animRef.current = requestAnimationFrame(animate); frameCount++;
@@ -1476,7 +1591,7 @@ function SolarPanel() {
       belt.rotation.y += .0008;
       renderer.render(scene, camera);
     }; animate();
-    return () => { cancelAnimationFrame(animRef.current); renderer.domElement.removeEventListener("click", onClick); renderer.domElement.removeEventListener("mousemove", onMove); renderer.domElement.removeEventListener("mousedown", onDown); window.removeEventListener("mouseup", onUp); window.removeEventListener("mousemove", onDrag); renderer.domElement.removeEventListener("wheel", onWheel); if (container.contains(renderer.domElement)) container.removeChild(renderer.domElement); renderer.dispose(); };
+    return () => { ro.disconnect(); cancelAnimationFrame(animRef.current); renderer.domElement.removeEventListener("click", onClick); renderer.domElement.removeEventListener("mousemove", onMove); renderer.domElement.removeEventListener("mousedown", onDown); window.removeEventListener("mouseup", onUp); window.removeEventListener("mousemove", onDrag); renderer.domElement.removeEventListener("wheel", onWheel); if (container.contains(renderer.domElement)) container.removeChild(renderer.domElement); renderer.dispose(); };
   }, []);
   const focusPlanet = (idx) => { const p = PLANETS[idx]; setSelected(p); targetRef.current.zoom = p.dist + p.size * 5 + 4; targetRef.current.rotX = .15; };
   const resetCamera = () => { targetRef.current = { rotY: 0, rotX: .3, zoom: 38 }; setSelected(null); };
@@ -1586,28 +1701,56 @@ function VoicePanel({ onNavigate }) {
       <div style={{ color: active ? "#ff8888" : T.muted, marginTop: 18, fontSize: 15, fontWeight: 600 }}>{active ? "🔴 LISTENING — Speak a command" : "Tap to activate voice control"}</div>
       {active && <div style={{ display: "flex", gap: 5, marginTop: 16, alignItems: "center" }}>{[...Array(7)].map((_, i) => <div key={i} style={{ width: 5, background: `hsl(${i * 20 + 200},100%,60%)`, borderRadius: 3, animation: `wave .6s ease-in-out ${i * .1}s infinite` }} />)}</div>}
       {transcript && <div style={{ marginTop: 18, padding: "12px 22px", background: T.surf2, border: `1px solid ${T.border}`, borderRadius: 14, maxWidth: 400, textAlign: "center" }}><div style={{ color: T.muted, fontSize: 10, letterSpacing: 1, marginBottom: 5 }}>TRANSCRIBING…</div><div style={{ color: T.txt, fontSize: 16, fontStyle: "italic" }}>"{transcript}"</div></div>}</div>
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}><Card><CardTitle>🗣️ Commands</CardTitle>{COMMANDS.map(({ cmd, action, icon }) => <div key={cmd} style={{ display: "flex", alignItems: "center", gap: 9, padding: "9px 12px", background: T.bg, borderRadius: 9, border: `1px solid ${T.border}`, marginBottom: 6 }}><span style={{ fontSize: 16 }}>{icon}</span><div><div style={{ color: T.cyan, fontFamily: "Inconsolata,monospace", fontSize: 11, fontWeight: 700 }}>{cmd}</div><div style={{ color: T.muted, fontSize: 10, marginTop: 1 }}>→ {action}</div></div></div>)}</Card>
-      <Card><CardTitle>📝 Command Log</CardTitle>{cmdLog.length === 0 ? <div style={{ color: T.muted, fontSize: 12, textAlign: "center", padding: 18 }}>No commands yet. Activate the mic!</div> : cmdLog.map((log, i) => <div key={i} style={{ padding: "7px 10px", background: T.bg, borderRadius: 7, border: `1px solid ${log.type === "success" ? T.green + "44" : log.type === "error" ? T.red + "44" : T.border}`, marginBottom: 5 }}><div style={{ color: T.muted, fontSize: 9, marginBottom: 1 }}>{log.t}</div><div style={{ color: log.type === "success" ? T.green : log.type === "error" ? T.red : T.txt, fontSize: 11 }}>{log.text}</div></div>)}</Card></div></div>);
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+      <Card>
+        <CardTitle>🗣️ Commands</CardTitle>
+        {COMMANDS.map(({ cmd, action, icon }) => (
+          <div key={cmd} style={{ display: "flex", alignItems: "center", gap: 9, padding: "9px 12px", background: T.bg, borderRadius: 9, border: `1px solid ${T.border}`, marginBottom: 6 }}>
+            <span style={{ fontSize: 16 }}>{icon}</span>
+            <div>
+              <div style={{ color: T.cyan, fontFamily: "Inconsolata,monospace", fontSize: 11, fontWeight: 700 }}>{cmd}</div>
+              <div style={{ color: T.muted, fontSize: 10, marginTop: 1 }}>→ {action}</div>
+            </div>
+          </div>
+        ))}
+      </Card>
+      <Card>
+        <CardTitle>📝 Command Log</CardTitle>
+        {cmdLog.length === 0 ? (
+          <div style={{ color: T.muted, fontSize: 12, textAlign: "center", padding: 18 }}>
+            No commands yet. Activate the mic!
+          </div>
+        ) : (
+          cmdLog.map((log, i) => (
+            <div key={i} style={{ padding: "7px 10px", background: T.bg, borderRadius: 7, border: `1px solid ${log.type === "success" ? T.green + "44" : log.type === "error" ? T.red + "44" : T.border}`, marginBottom: 5 }}>
+              <div style={{ color: T.muted, fontSize: 9, marginBottom: 1 }}>{log.t}</div>
+              <div style={{ color: log.type === "success" ? T.green : log.type === "error" ? T.red : T.txt, fontSize: 11 }}>{log.text}</div>
+            </div>
+          ))
+        )}
+      </Card>
+    </div>
+  </div>);
 }
 
 /* ═══════════════════════════════════════════════════════════
-   MAIN APP
+   MAIN APP DASHBOARD (Smartboard Layout)
 ═══════════════════════════════════════════════════════════ */
-const TABS = [
-  { id: "assistant", icon: "🤖", label: "AI Assistant" },
+const TOOLS = [
   { id: "lesson", icon: "📋", label: "Lesson Planner" },
   { id: "quiz", icon: "🎯", label: "Quiz Generator" },
-  { id: "solar", icon: "🪐", label: "Solar System" },
-  { id: "whiteboard", icon: "✏️", label: "Whiteboard" },
-  { id: "analytics", icon: "📊", label: "Analytics" },
-  { id: "voice", icon: "🎙️", label: "Voice Commands" },
+  { id: "solar", icon: "🪐", label: "Interactive Models" },
   { id: "diagram", icon: "🎨", label: "AI Diagrams" },
+  { id: "analytics", icon: "📊", label: "Class Analytics" },
+  { id: "voice", icon: "🎙️", label: "Voice Control" },
 ];
 
 export default function SmartClassroom() {
-  const [tab, setTab] = useState("assistant");
+  const [activeTool, setActiveTool] = useState(null);
   const [clock, setClock] = useState(new Date());
   const [gestureEnabled, setGestureEnabled] = useState(false);
+  const [leftOpen, setLeftOpen] = useState(true);
+  const [centerOpen, setCenterOpen] = useState(true);
 
   const handleGestureToggle = useCallback(() => setGestureEnabled(p => !p), []);
 
@@ -1618,73 +1761,108 @@ export default function SmartClassroom() {
   }, []);
 
   return (
-    <div style={{ fontFamily: "Rajdhani,sans-serif", background: T.bg, color: T.txt, height: "100vh", display: "flex", flexDirection: "column", overflow: "hidden" }}>
-      {/* Header */}
-      <header style={{ background: `linear-gradient(90deg,rgba(8,14,28,.92),rgba(8,20,40,.92))`, backdropFilter: "blur(16px)", borderBottom: `1px solid ${T.border}`, height: 52, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", flexShrink: 0 }}>
+    <div style={{ fontFamily: "Inter,sans-serif", background: T.bg, color: T.txt, height: "100vh", display: "flex", flexDirection: "column", overflow: "hidden" }}>
+      {/* Top Toolbar */}
+      <header style={{ background: "rgba(255,255,255,0.8)", backdropFilter: "blur(16px)", borderBottom: `1px solid ${T.border}`, height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", flexShrink: 0, zIndex: 50, boxShadow: "0 2px 10px rgba(0,0,0,0.02)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 32, height: 32, borderRadius: 8, background: `linear-gradient(135deg,${T.cyanDim},#001830)`, border: `1px solid ${T.cyan}44`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, boxShadow: `0 0 12px ${T.cyan}22`, animation: "breathe 4s ease-in-out infinite" }}>⬡</div>
-          <div><div style={{ color: T.txt, fontWeight: 800, fontSize: 16, letterSpacing: 3, lineHeight: 1 }}>NOVA CLASSROOM AI</div><div style={{ color: T.muted, fontSize: 9, letterSpacing: 2, marginTop: 2, opacity: .7 }}>SMART WHITEBOARD v2.0</div></div>
+          <div style={{ width: 34, height: 34, borderRadius: 10, background: `linear-gradient(135deg, ${T.cyan}, #ff6b00)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, color: "#fff", boxShadow: `0 4px 12px ${T.cyan}44` }}>⬡</div>
+          <div><div style={{ color: "#1d1d1f", fontWeight: 700, fontSize: 16, letterSpacing: 0.5, lineHeight: 1 }}>NOVA SMARTBOARD</div><div style={{ color: T.muted, fontSize: 10, letterSpacing: 1, marginTop: 4, fontWeight: 500, textTransform: "uppercase" }}>Concurrent Workspace</div></div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <button onClick={handleGestureToggle} style={{
-            display: "flex", alignItems: "center", gap: 6, background: gestureEnabled ? `${T.green}15` : "rgba(255,255,255,.04)",
-            border: `1px solid ${gestureEnabled ? T.green + "66" : T.border}`, borderRadius: 20,
-            color: gestureEnabled ? T.green : T.muted, padding: "5px 12px", fontSize: 11, cursor: "pointer",
-            fontFamily: "Rajdhani,sans-serif", fontWeight: 700, transition: "all .3s", letterSpacing: .5,
-          }}>
-            <span style={{ fontSize: 13 }}>{gestureEnabled ? "🖐️" : "✋"}</span>
-            {gestureEnabled ? "Gestures: ON" : "Gestures: OFF"}
+
+        {/* View Toggles */}
+        <div style={{ display: "flex", gap: 8, marginLeft: 24, paddingLeft: 24, borderLeft: `1px solid ${T.border}` }}>
+          <button onClick={() => setLeftOpen(!leftOpen)} style={{ background: leftOpen ? `${T.cyan}15` : "transparent", border: `1px solid ${leftOpen ? T.cyan + "44" : "transparent"}`, color: leftOpen ? T.cyan : T.muted, padding: "6px 12px", borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: "pointer", transition: "all .2s" }}>
+            🤖 AI Chat {leftOpen ? "ON" : "OFF"}
           </button>
-          {[[T.cyan, "AI"], [T.green, "LIVE"], [T.amber, "SENSORS"]].map(([c, l]) => (
+          <button onClick={() => setCenterOpen(!centerOpen)} style={{ background: centerOpen ? `${T.cyan}15` : "transparent", border: `1px solid ${centerOpen ? T.cyan + "44" : "transparent"}`, color: centerOpen ? T.cyan : T.muted, padding: "6px 12px", borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: "pointer", transition: "all .2s" }}>
+            ✏️ Board {centerOpen ? "ON" : "OFF"}
+          </button>
+        </div>
+
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
+          {[[T.cyan, "AI CORE"], [T.green, "LIVE FEED"], [T.amber, "SENSORS"]].map(([c, l]) => (
             <div key={l} style={{ display: "flex", alignItems: "center", gap: 4, background: `${c}0a`, border: `1px solid ${c}33`, borderRadius: 16, padding: "3px 9px" }}>
               <div style={{ width: 5, height: 5, borderRadius: "50%", background: c, animation: "pulse 2.5s ease-in-out infinite" }} />
               <span style={{ color: c, fontSize: 9, fontWeight: 700, letterSpacing: .8 }}>{l}</span>
             </div>
           ))}
-          <div style={{ color: T.muted, fontSize: 12, fontFamily: "Inconsolata,monospace", fontWeight: 700, opacity: .8 }}>{clock.toLocaleTimeString()}</div>
+          <div style={{ color: T.muted, fontSize: 13, fontFamily: "Inconsolata,monospace", fontWeight: 700, opacity: .8, marginLeft: 8 }}>{clock.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
         </div>
       </header>
 
-      {/* Nav */}
-      <nav style={{ background: "rgba(8,14,28,.6)", backdropFilter: "blur(8px)", borderBottom: `1px solid ${T.border}`, display: "flex", padding: "0 12px", flexShrink: 0, overflowX: "auto", gap: 1 }}>
-        {TABS.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={{ display: "flex", alignItems: "center", gap: 6, padding: "10px 14px", background: tab === t.id ? `${T.cyan}0a` : "none", border: "none", cursor: "pointer", color: tab === t.id ? T.cyan : T.muted, borderBottom: `2px solid ${tab === t.id ? T.cyan : "transparent"}`, fontFamily: "Rajdhani,sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: .5, whiteSpace: "nowrap", transition: "all .2s ease", animation: tab === t.id ? "tabSlide .25s ease" : "none" }}
-            onMouseEnter={e => { if (tab !== t.id) { e.currentTarget.style.color = T.txt; e.currentTarget.style.background = `${T.cyan}06`; } }}
-            onMouseLeave={e => { if (tab !== t.id) { e.currentTarget.style.color = T.muted; e.currentTarget.style.background = "none"; } }}>
-            <span style={{ fontSize: 13 }}>{t.icon}</span><span>{t.label}</span>
-          </button>
-        ))}
-      </nav>
+      {/* Main Layout Grid */}
+      <div style={{ flex: 1, display: "flex", overflow: "hidden", background: T.surf2, position: "relative" }}>
 
-      {/* Main */}
-      <main style={{ flex: 1, overflow: "hidden", position: "relative" }}>
-        {tab === "assistant" && <AssistantPanel />}
-        {tab === "lesson" && <LessonPanel />}
-        {tab === "quiz" && <QuizPanel />}
-        {tab === "solar" && <SolarSystem />}
-        {tab === "whiteboard" && <WhiteboardPanel />}
-        {tab === "analytics" && <AnalyticsPanel />}
-        {tab === "voice" && <VoicePanel onNavigate={setTab} />}
-        {tab === "diagram" && <DiagramPanel />}
-      </main>
-
-      {/* Footer */}
-      <footer style={{ height: 24, background: "rgba(8,14,28,.8)", backdropFilter: "blur(6px)", borderTop: `1px solid ${T.border}`, display: "flex", alignItems: "center", padding: "0 20px", gap: 16, flexShrink: 0 }}>
-        {[["🤖", "Claude Sonnet", "Connected"], ["🎙️", "Speech API", "Active"], ["🖐️", "TF.js Handpose", gestureEnabled ? "Active" : "Standby"], ["🪐", "Three.js", "Rendering"], ["⚡", "FastAPI", "Online"]].map(([ico, s, st]) => (
-          <div key={s} style={{ display: "flex", alignItems: "center", gap: 4 }}>
-            <span style={{ fontSize: 9 }}>{ico}</span>
-            <span style={{ color: T.dimTxt, fontSize: 9, fontWeight: 600 }}>{s}:</span>
-            <span style={{ color: s === "TF.js Handpose" && !gestureEnabled ? T.amber : T.green, fontSize: 9, fontWeight: 600 }}>{st}</span>
+        {/* Left Panel: AI Assistant */}
+        <div style={{ width: leftOpen ? 340 : 0, transition: "width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)", background: "rgba(255,255,255,0.7)", backdropFilter: "blur(20px)", borderRight: leftOpen ? `1px solid ${T.border}` : "none", display: "flex", flexDirection: "column", zIndex: 10, flexShrink: 0, boxShadow: leftOpen ? "2px 0 16px rgba(0,0,0,0.03)" : "none", overflow: "hidden" }}>
+          <div style={{ minWidth: 340, height: "100%", display: "flex", flexDirection: "column" }}>
+            <div style={{ padding: "16px 24px", borderBottom: `1px solid ${T.border}`, fontWeight: 700, color: T.txt, display: "flex", alignItems: "center", gap: 10, fontSize: 15, letterSpacing: 0.5 }}>
+              <span style={{ fontSize: 20 }}>🤖</span> AI Assistant
+              <button onClick={() => setLeftOpen(false)} style={{ marginLeft: "auto", background: "transparent", border: "none", cursor: "pointer", color: T.muted, fontSize: 14 }}>✕</button>
+            </div>
+            <div style={{ flex: 1, overflow: "hidden" }}>
+              <AIAssistantPanel />
+            </div>
           </div>
-        ))}
-        <div style={{ marginLeft: "auto", color: T.dimTxt, fontSize: 9, fontFamily: "Inconsolata,monospace", opacity: .7 }}>NOVA AI CLASSROOM © 2026</div>
-      </footer>
+        </div>
 
-      {/* Hand Gesture Controller */}
+        {/* Center Panel: Whiteboard */}
+        <div style={{ flex: centerOpen ? 1 : 0, width: centerOpen ? "auto" : 0, transition: "flex 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)", position: "relative", display: "flex", flexDirection: "column", overflow: "hidden", background: "#ffffff", boxShadow: centerOpen ? "inset 0 0 20px rgba(0,0,0,0.02)" : "none" }}>
+          <div style={{ minWidth: centerOpen ? "100%" : 0, height: "100%", display: centerOpen ? "flex" : "none", flexDirection: "column" }}>
+            <WhiteboardPanel />
+          </div>
+        </div>
+
+        {/* Bottom Floating Bar: Tools & Gestures */}
+        <div style={{ position: "absolute", bottom: 24, left: "50%", transform: "translateX(-50%)", background: "rgba(255,255,255,0.85)", backdropFilter: "blur(24px)", padding: "10px 16px", borderRadius: 16, border: `1px solid ${T.border}`, boxShadow: "0 8px 32px rgba(0,0,0,0.08)", display: "flex", gap: 12, alignItems: "center", zIndex: 100 }}>
+          <button onClick={handleGestureToggle} style={{
+            display: "flex", alignItems: "center", gap: 8, background: gestureEnabled ? `${T.green}15` : T.surf2,
+            border: `1px solid ${gestureEnabled ? T.green + "66" : T.border}`, borderRadius: 10,
+            color: gestureEnabled ? T.green : T.dimTxt, padding: "8px 16px", fontSize: 13, cursor: "pointer",
+            fontFamily: "Inter,sans-serif", fontWeight: 600, transition: "all .3s ease"
+          }}>
+            <span style={{ fontSize: 16 }}>{gestureEnabled ? "🖐️" : "✋"}</span>
+            {gestureEnabled ? "Gestures Active" : "Gestures Off"}
+          </button>
+          <div style={{ width: 1, height: 24, background: T.border2 }} />
+          {TOOLS.map(t => (
+            <button key={t.id} onClick={() => setActiveTool(activeTool === t.id ? null : t.id)} style={{ background: activeTool === t.id ? `linear-gradient(135deg, ${T.cyan}, #ff6b00)` : "transparent", border: activeTool === t.id ? `1px solid transparent` : `1px solid transparent`, color: activeTool === t.id ? "#fff" : T.dimTxt, padding: "8px 16px", borderRadius: 10, cursor: "pointer", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 8, transition: "all .2s ease", boxShadow: activeTool === t.id ? `0 4px 14px ${T.cyan}40` : "none" }} onMouseEnter={e => { if (activeTool !== t.id) { e.currentTarget.style.background = T.surf2; e.currentTarget.style.color = T.txt; } }} onMouseLeave={e => { if (activeTool !== t.id) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.dimTxt; } }}>
+              <span style={{ fontSize: 16, filter: activeTool === t.id ? "drop-shadow(0 2px 4px rgba(0,0,0,0.1))" : "grayscale(1) opacity(0.7)" }}>{t.icon}</span> {t.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Right Panel: Active Tool View (Conditionally Expanded) */}
+        <div style={{ flex: (!leftOpen && !centerOpen && activeTool) ? 1 : "none", width: (!leftOpen && !centerOpen && activeTool) ? "auto" : (activeTool ? 400 : 0), transition: "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)", background: "rgba(255,255,255,0.7)", backdropFilter: "blur(20px)", borderLeft: activeTool ? `1px solid ${T.border}` : "none", display: "flex", flexDirection: "column", zIndex: 10, overflow: "hidden", flexShrink: 0, boxShadow: activeTool ? "-4px 0 24px rgba(0,0,0,0.04)" : "none" }}>
+          {activeTool && (
+            <>
+              <div style={{ padding: "16px 24px", borderBottom: `1px solid ${T.border}`, fontWeight: 700, color: T.txt, display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: 15, flexShrink: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}><span style={{ fontSize: 20 }}>{TOOLS.find(t => t.id === activeTool)?.icon}</span> {TOOLS.find(t => t.id === activeTool)?.label}</div>
+                <div style={{ display: "flex", gap: 6 }}>
+                  <button onClick={() => { const isMax = (!leftOpen && !centerOpen); setLeftOpen(isMax); setCenterOpen(isMax); }} style={{ background: T.surf2, border: `1px solid ${T.border}`, borderRadius: "50%", width: 30, height: 30, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", fontSize: 14, color: T.muted, transition: "all .2s ease", fontWeight: 600 }}>⛶</button>
+                  <button onClick={() => setActiveTool(null)} style={{ background: T.surf2, border: `1px solid ${T.border}`, borderRadius: "50%", width: 30, height: 30, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", fontSize: 14, color: T.muted, transition: "all .2s ease", fontWeight: 600 }}>✕</button>
+                </div>
+              </div>
+              <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden", position: "relative" }}>
+                <div style={{ width: "100%", height: "100%" }}>
+                  {activeTool === "lesson" && <LessonPanel />}
+                  {activeTool === "quiz" && <QuizPanel />}
+                  {activeTool === "solar" && <SolarSystem />}
+                  {activeTool === "analytics" && <AnalyticsPanel />}
+                  {activeTool === "diagram" && <DiagramPanel />}
+                  {activeTool === "voice" && <VoicePanel onNavigate={setActiveTool} />}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Background Gesture Camera Module */}
       <HandGesturePanel
-        onTabChange={setTab}
-        currentTab={tab}
-        tabIds={TABS.map(t => t.id)}
+        onTabChange={setActiveTool}
+        currentTab={activeTool}
+        tabIds={TOOLS.map(t => t.id)}
         enabled={gestureEnabled}
         onToggle={handleGestureToggle}
       />
